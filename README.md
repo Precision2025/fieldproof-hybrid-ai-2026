@@ -65,3 +65,6 @@ Official rules: https://firebasehybridaihackathon.devpost.com/rules
 ## Technical update (Nov 15)
 
 The hybrid path calls `initializeDeviceModel` synchronously from the Analyze button activation. When the owner explicitly allows cloud fallback, the SDK uses `PREFER_ON_DEVICE` and does **not block** on a pending or unsupported local-model download; Firebase reports the actual `inferenceSource`. With cloud fallback off, on-device inference is strictly required. No response is fabricated if App Check or model access fails. Production public-access testing and actual inference must still be verified before contest submission.
+## Privacy safety hold (November 15, 2026)
+
+An independent browser-based regression check displayed `IN_CLOUD` when the user-facing cloud toggle was OFF. Until a controlled Chrome desktop on-device test proves that no remote request can occur, `runAI` fails closed **before any model call** when `allowCloud` is false. This explicitly disables on-device-only analysis; the six-point deterministic rubric and packet are unaffected. When cloud permission is turned ON, Firebase AI Logic continues using `PREFER_ON_DEVICE` and a supported Gemini 3.5 Flash Lite cloud fallback. Do not describe on-device privacy as verified or submit the app as a fully proven hybrid until this safety hold is resolved. Never send real customer notes in contest demos.
