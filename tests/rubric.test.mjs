@@ -6,3 +6,5 @@ test('retail failure flags missing evidence rather than inventing it',()=>{const
 test('complete before and after samples can pass checklist',()=>{const d=DEMOS['Parking-lot lights'];const e=evaluateEvidence(d.notes,d.photos);assert.equal(e.ready,true)});
 test('text alone cannot satisfy photo evidence',()=>{const d=DEMOS['Parking-lot lights'];const e=evaluateEvidence(d.notes,[]);assert.equal(e.checks.find(x=>x.id==='before').complete,false);assert.equal(e.checks.find(x=>x.id==='after').complete,false)});
 test('export identifies human notes as unverified',()=>{const p=makePacket({id:'EX-1',site:'Test'},'Some note',[]);assert(p.includes('UNVERIFIED'));assert(p.includes('not a safety clearance'))});
+test('tenant mentioning a problem is not customer handoff',()=>{const d=DEMOS['Retail outage'];const x=evaluateEvidence(d.notes,d.photos);assert.equal(x.checks.find(y=>y.id==='customer').complete,false)});
+test('explicit customer notification counts as handoff',()=>{const d=DEMOS['Parking-lot lights'];const x=evaluateEvidence(d.notes,d.photos);assert.equal(x.checks.find(y=>y.id==='customer').complete,true)});
