@@ -38,7 +38,8 @@ export async function createModel(allowCloud = false, onProgress = () => {}) {
   // Keep the first initializeDeviceModel call synchronous within that event handler.
   const ai = getAiInstance();
   const model = getGenerativeModel(ai, {
-    mode: allowCloud ? InferenceMode.PREFER_ON_DEVICE : InferenceMode.ONLY_ON_DEVICE
+    mode: allowCloud ? InferenceMode.PREFER_ON_DEVICE : InferenceMode.ONLY_ON_DEVICE,
+    inCloudParams: { model: 'gemini-3.5-flash-lite' }
   });
   const modelReady = model.initializeDeviceModel(onProgress);
   if (allowCloud) {
