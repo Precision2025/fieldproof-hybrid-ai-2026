@@ -5,7 +5,7 @@ export const CHECKS = [
  {id:'action',label:'Work performed',tip:'State what you did, without implying a test or repair not documented.',test:(t)=>/replac|install|repaired|adjust|isolat|inspect|reset|tested|measur|reterminat|clean|secured|troubleshoot/i.test(t)},
  {id:'after',label:'After-condition evidence',tip:'Record the observed state after work and attach an after photo.',test:(t,p)=>/after|restored|verified|functional|operat|post.?service|completed|passed|not resolved/i.test(t)&&p.some(x=>x.stage==='after')},
  {id:'verification',label:'Verification notes',tip:'Record who observed the final condition and the actual outcome; do not invent readings.',test:(t)=>/verif|tested|measur|confirmed|checked|witness|not resolved|unable to test/i.test(t)},
- {id:'customer',label:'Customer handoff',tip:'Capture approval, customer response, or explicit pending handoff.',test:(t)=>/customer|manager|tenant|representative|approved|sign|handoff|notified|contacted/i.test(t)}
+ {id:'customer',label:'Customer handoff',tip:'Capture approval, customer response, or explicit pending handoff.',test:(t)=>/(?:notified|contacted|informed|updated)\s+(?:the\s+)?(?:customer|manager|tenant|representative)|(?:customer|manager|tenant|representative)\s+(?:confirmed|approved|signed|accepted|declined|was notified|was informed|was contacted)|handoff\s*(?:complete|pending|attempted)/i.test(t)}
 ];
 export function evaluateEvidence(notes='',photos=[]){
  const clean=String(notes).trim();
