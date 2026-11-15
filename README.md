@@ -19,7 +19,7 @@ Service visits often end with incomplete notes, missing before/after evidence or
 
 ## AI integration (contest-required activation)
 
-`src/ai.js` **imports and invokes** Firebase AI Logic (`getAI`, `getGenerativeModel`, `model.initializeDeviceModel`, `model.generateContent`). It uses `InferenceMode.ONLY_ON_DEVICE` by default for data privacy. If the technician explicitly authorizes cloud fallback, it uses `InferenceMode.PREFER_ON_DEVICE`. `result.response.inferenceSource` reports whether the result was ON_DEVICE or IN_CLOUD. Firebase App Check initialization uses a registered public reCAPTCHA v3 site key.
+`src/ai.js` **imports and invokes** Firebase AI Logic (`getAI`, `getGenerativeModel`, `model.initializeDeviceModel`, `model.generateContent`). It uses `InferenceMode.ONLY_ON_DEVICE` by default for data privacy. If the technician explicitly authorizes cloud fallback, it uses `InferenceMode.PREFER_ON_DEVICE`. `result.response.inferenceSource` reports whether the result was ON_DEVICE or IN_CLOUD. Firebase App Check initialization supports a registered public reCAPTCHA Enterprise or classic v3 site key.
 
 **No AI output is fabricated while unconfigured.** A working Chrome desktop with Nano4 available, a real Firebase project with AI Logic enabled, and enforced App Check are needed to validate the live AI path. App Check debug tokens must NEVER be committed. A production attestation provider must be configured before public release.
 
@@ -35,7 +35,7 @@ npm run build
 
 To activate live hybrid AI:
 1. Create a **new** Firebase project dedicated to this contest, register a Web app, enable Gemini Developer API provider for AI Logic, and enforce App Check.
-2. Register a production reCAPTCHA v3 App Check provider and copy only the public site key into `VITE_APPCHECK_RECAPTCHA_SITE_KEY`. Set Firebase public configuration entries in `.env` (not committed).
+2. Register a production reCAPTCHA Enterprise App Check provider (or reCAPTCHA v3 if required), copy only its public site key into `VITE_APPCHECK_RECAPTCHA_SITE_KEY`, and set `VITE_APPCHECK_PROVIDER=enterprise` (or `v3`). Set Firebase public configuration entries in `.env` (not committed).
 3. Use Chrome desktop v139+ with Gemini Nano multimodal Prompt API support/flag and availability; a user click starts `initializeDeviceModel`.
 4. Press **Analyze with Firebase AI Logic**. With cloud fallback off, only the on-device model is allowed. With it on, the text notes may be sent to the Gemini Developer API through Firebase if local model isn't available.
 5. Test using an actual project. Confirm `ON_DEVICE` and `IN_CLOUD` modes are accurately labeled before making contest/demo claims.
@@ -61,3 +61,7 @@ This tool reviews documentation completeness only. It cannot issue safe-to-energ
 
 Firebase documentation: https://firebase.google.com/docs/ai-logic/hybrid/web/get-started
 Official rules: https://firebasehybridaihackathon.devpost.com/rules
+
+## Technical update (Nov 15)
+
+The hybrid path calls `initializeDeviceModel` synchronously from the Analyze button activation. When the owner explicitly allows cloud fallback, the SDK uses `PREFER_ON_DEVICE` and does **not block** on a pending or unsupported local-model download; Firebase reports the actual `inferenceSource`. With cloud fallback off, on-device inference is strictly required. No response is fabricated if App Check or model access fails. Production public-access testing and actual inference must still be verified before contest submission.
