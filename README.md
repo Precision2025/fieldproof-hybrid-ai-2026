@@ -68,3 +68,9 @@ The hybrid path calls `initializeDeviceModel` synchronously from the Analyze but
 ## Privacy safety hold (November 15, 2026)
 
 An independent browser-based regression check displayed `IN_CLOUD` when the user-facing cloud toggle was OFF. Until a controlled Chrome desktop on-device test proves that no remote request can occur, `runAI` fails closed **before any model call** when `allowCloud` is false. This explicitly disables on-device-only analysis; the six-point deterministic rubric and packet are unaffected. When cloud permission is turned ON, Firebase AI Logic continues using `PREFER_ON_DEVICE` and a supported Gemini 3.5 Flash Lite cloud fallback. Do not describe on-device privacy as verified or submit the app as a fully proven hybrid until this safety hold is resolved. Never send real customer notes in contest demos.
+
+## 2026 #BuildHybridAI demonstration (verified)
+
+- [Public 69-second YouTube demonstration](https://www.youtube.com/watch?v=O2RK-qs7voQ) — original screen recording of interactive UI, synthetic work orders and documentation checklist (does not simulate or claim on-device AI output)
+- [Public FieldProof app](https://fieldproof-hybrid-ai-2026-travis-s-projects-980fd233.vercel.app/)
+- Firebase AI Logic cloud response tested with explicit opt-in. On-device-only inference is intentionally on privacy safety hold following a regression test and will not send a model request when the user disables cloud consent. No on-device output is certified yet.
