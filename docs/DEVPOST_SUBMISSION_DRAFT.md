@@ -2,7 +2,7 @@
 
 **Contest:** Google #BuildHybridAI 2026 (Web/Chrome)
 **Entrant:** Travis Jackson / Precision2025
-**Status:** Draft — NOT a confirmed Devpost submission
+**Status:** Prepared entry draft — NOT a confirmed Devpost submission; hybrid on-device proof remains on safety hold
 **Deadline:** Nov 30, 2026 at 2:00 PM Pacific / 4:00 PM Central
 
 ## Elevator pitch
@@ -37,7 +37,7 @@ Unlike broad chatbots, FieldProof targets a highly specific work-order failure: 
 ## Public links
 - **Source (MIT):** https://github.com/Precision2025/fieldproof-hybrid-ai-2026
 - **Live app:** https://fieldproof-hybrid-ai-2026-travis-s-projects-980fd233.vercel.app/
-- **YouTube demo:** PENDING PUBLICATION AND VALIDATION — insert verified watch URL before submission
+- **YouTube demo:** https://www.youtube.com/watch?v=O2RK-qs7voQ (public page title resolved on Nov 19, 2026; playback and full video content not independently revalidated in this check)
 
 ## Judge testing steps
 1. Open the live app in a current desktop Chrome browser; no account required.
@@ -54,8 +54,8 @@ Unlike broad chatbots, FieldProof targets a highly specific work-order failure: 
 - [x] Verified live `IN_CLOUD` result with synthetic data
 - [x] Explicitly documented on-device safety hold
 - [x] 69-second real-UI screen walkthrough, original instrumental score
-- [ ] Public YouTube watch URL confirmed after publication
-- [ ] On-device Chrome Nano4 proof and privacy regression test (high priority, not independently verified)
+- [x] Public YouTube watch URL exists; public page title and destination resolved (playback not revalidated)
+- [ ] On-device Chrome Nano4 proof and privacy regression test (high priority, not independently verified; fail-closed behavior must remain until it is)
 - [ ] Sign in to Devpost and submit using the user's existing account; save receipt
 
-No prize, acceptance, or official contest submission is claimed by this draft.
+**Nov 19 account verification:** The entrant's own phone Chrome session is reported signed in; a separate connected browser profile still cannot access the Devpost form due to a Cloudflare human-verification check. Registration is independently confirmed by a Nov 15 Devpost welcome email; a submission confirmation receipt is still required. Do not attempt to bypass human verification or create duplicate accounts.\n\nNo prize, acceptance, or official contest submission is claimed by this draft.
